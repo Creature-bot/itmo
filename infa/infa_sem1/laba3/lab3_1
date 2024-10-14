@@ -5,23 +5,26 @@
 
 import re
 
-def count_smileys(text):
-    pattern = r':<\{\|'
-    return len(re.findall(pattern, text))
+def count_smile(t):
+    pattern = r'8-\\'
+    return len(re.findall(pattern, t))
 
-def run_tests():
+def run_test():
     tests = [
-        ":<{| :<{| - это два смайлика!",
-        ":<{ :<{| :<{",
-        ":<{| и другой текст",
-        "текст и :<{| смайлик в конце",
-        "нет смайликов в этом тексте",
+        "Смайлики 8-\ помогают передать эмоции в текстовых сообщениях.",
+        "Я люблю использовать 8-\ и 8-), чтобы выразить свою эмоцию 8-\.",
+        "Смайлик 8-\ делают общение более ярким и веселым 8-\ 8-\ 8-\.",
+        "Иногда один смайлик 8-\ может сказать больше, чем целое предложение с 8-\ 8-\ 8-\.",
+        "Смайлика не будет, смайлик обиделся и написал псж."
     ]
 
-    expected_results = [2, 1, 1, 1, 0]
+    results = [1,2,4,4,0]
 
-    for i, test in enumerate(tests):
-        result = count_smileys(test)
-        print(f"Тест {i + 1}: {'Пройден' if result == expected_results[i] else 'Не пройден'} (Найдено: {result}, Ожидалось: {expected_results[i]})")
+    for i, s in enumerate(tests):
+        result = count_smile(s)
+        if result == results[i]:
+            print(f'In test {i+1} found {result} smile')
+        else:
+            print(f'Test {i+1} is failed, should have been {result}')
 
-run_tests()
+run_test()

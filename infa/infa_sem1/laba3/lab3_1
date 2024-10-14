@@ -1,0 +1,27 @@
+#print(466380%6) #0
+#print(466380%4) #0
+#print(466380%8) #4
+# 8-\
+
+import re
+
+def count_smileys(text):
+    pattern = r':<\{\|'
+    return len(re.findall(pattern, text))
+
+def run_tests():
+    tests = [
+        ":<{| :<{| - это два смайлика!",
+        ":<{ :<{| :<{",
+        ":<{| и другой текст",
+        "текст и :<{| смайлик в конце",
+        "нет смайликов в этом тексте",
+    ]
+
+    expected_results = [2, 1, 1, 1, 0]
+
+    for i, test in enumerate(tests):
+        result = count_smileys(test)
+        print(f"Тест {i + 1}: {'Пройден' if result == expected_results[i] else 'Не пройден'} (Найдено: {result}, Ожидалось: {expected_results[i]})")
+
+run_tests()

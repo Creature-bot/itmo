@@ -3,8 +3,6 @@
 chmod -R 777 lab0
 rm -r lab0
 
-#Вариант 1705
-
 #1
 
 mkdir lab0
@@ -27,119 +25,168 @@ echo -e 'satk 4 sdef=4 spd=5' > skitty8
 echo -e 'Возможности\nOverland 8 Surface 6 Jump=4 Power 3 Intelligence 4 Tracker=0' > watchog0
 
 #2
-
-chmod 624 arcanine4
+chmod u=rw, g=w, o=r arcanine4
 chmod 363 cinccino6
-chmod 622 cinccino6/electrode
+chmod u=rw, g=w, o=w cinccino6/electrode
 chmod 750 cinccino6/sudowoodo
 chmod 311 cinccino6/chingling
 chmod 755 duskull6
-chmod 444 duskull6/simisage
+chmod u=r, g=r, o=r duskull6/simisage
 chmod 512 duskull6/roggenrola
 chmod 512 duskull6/marshtomp
 chmod 330 hariyama3
 chmod 540 hariyama3/clamperl
-chmod 576 hariyama3/dusclops
+chmod u=rx, g=rwx, o=rw hariyama3/dusclops
 chmod 640 hariyama3/zorua
 chmod 573 hariyama3/drowzee
 chmod 044 skitty8
-chmod 444 watchog0
+chmod u=r, g=r, o=r watchog0
 
 #3
-#3.1
 chmod 777 skitty8
 cp skitty8 cinccino6/sudowoodo
 
-	#[s466380@helios ~/lab0]$ ls -p cinccino6/sudowoodo
+#Команда для проверки и результат
+	#ls -p cinccino6/sudowoodo
 	#skitty8
 
-#3.2
 ln -s ../watchog0 hariyama3/clamperlwatchog
 
-	#[s466380@helios ~/lab0]$ cat hariyama3/clamperlwatchog 
+#Команда для проверки и результат
+	#cat hariyama3/clamperlwatchog 
 	#Возможности
 	#Overland 8 Surface 6 Jump=4 Power 3 Intelligence 4 Tracker=0
 
-#3.3
 ln skitty8 hariyama3/clamperlskitty
 
-	#[s466380@helios ~/lab0]$ ls -p hariyama3/clamperlskitty
-	#hariyama3/clamperlskitty
+#Команда для проверки и результат
+	#ls -li skitty8 hariyama3/clamperlskitty
+	#12202120 -rwxrwxrwx  2 s466380 studs 0  7 нояб. 08:21 hariyama3/clamperlskitty
+	#12202120 -rwxrwxrwx  2 s466380 studs 0  7 нояб. 08:21 skitty8
 
-#3.4
 chmod 777 hariyama3
 chmod 777 hariyama3/drowzee
 cp -r hariyama3 hariyama3/drowzee
 
-	#[s466380@helios ~/lab0]$ cd hariyama3/drowzee/hariyama3 
-	#[s466380@helios ~/lab0/hariyama3/drowzee/hariyama3]$ ls 
+#Команда для проверки и результат
+	#cd hariyama3/drowzee/hariyama3 
+	#ls 
 	#clamperl	clamperlskitty	drowzee		dusclops	zorua
 
-#3.5
 ln -s ./cinccino6 Copy_28
 
-	#[s466380@helios ~/lab0]$ ls -la | grep ^l
+#Команда для проверки и результат
+	#ls -la | grep ^l
 	#lrwxr-xr-x  1 s466380 studs 12 10 окт.  19:42 cinccino6 -> ../cinccino6
 
-#3.6
-chmod 777 skitty8
-cp skitty8 hariyama3/clamperlskitty 
+	#ls cinccino6
+	#chingling	electrode	sudowoodo
+	#ls Copy_28
+	#chingling	electrode	sudowoodo
 
-	#[s466380@helios ~/lab0]$ cat hariyama3/clamperlskitty1
+chmod 777 skitty8
+cat skitty8 > hariyama3/clamperlskitty 
+
+#Команда для проверки и результат
+	#cat hariyama3/clamperlskitty
 	#satk 4 sdef=4 spd=5
 
-#3.7
 cat hariyama3/clamperl duskull6/simisage > arcanine4_99
 
-	#[s466380@helios ~/lab0]$ cat hariyama3/clamperl
+#Команда для проверки и результат
+	#cat hariyama3/clamperl
 	#Способности Clamp Iron Defense Water Gun Whirlpool
 	#Shell Smash
-	#[s466380@helios ~/lab0]$ cat duskull6/simisage
+
+	#cat duskull6/simisage
 	#weigth=67.2 height=43.0 atk-10
 	#def=6
-	#[s466380@helios ~/lab0]$ cat arcanine4_99
+
+	#cat arcanine4_99
 	#Способности Clamp Iron Defense Water Gun Whirlpool
 	#Shell Smash
 	#weigth=67.2 height=43.0 atk-10
 	#def=6
+
+#Дерево каталогов
+
+ls -la
+total 28
+drwxr-xr-x  5 s466380 studs  8  9 окт.  16:19 .
+drwxr-xr-x  4 s466380 studs 12  9 окт.  16:19 ..
+-rw--w-r--  1 s466380 studs 22  9 окт.  16:19 arcanine4
+drwxrwxrwx  4 s466380 studs  5  9 окт.  16:19 cinccino6
+drwxr-xr-x  4 s466380 studs  5  9 окт.  16:19 duskull6
+d-wx-wx---  4 s466380 studs  6  9 окт.  16:19 hariyama3
+----r--r--  1 s466380 studs 20  9 окт.  16:19 skitty8
+-r--r--r--  1 s466380 studs 84  9 окт.  16:19 watchog0
+
+cd cinccino6
+ls -la
+total 11
+drwxrwxrwx  4 s466380 studs  5  9 окт.  16:19 .
+drwxr-xr-x  5 s466380 studs  8  9 окт.  16:19 ..
+d-wx--x--x  2 s466380 studs  2  9 окт.  16:19 chingling
+-rw--w--w-  1 s466380 studs 21  9 окт.  16:19 electrode
+drwxr-x---  2 s466380 studs  2  9 окт.  16:19 sudowoodo
+
+cd duskull6
+ls -la
+total 11
+drwxr-xr-x  4 s466380 studs  5  9 окт.  16:19 .
+drwxr-xr-x  5 s466380 studs  8  9 окт.  16:19 ..
+dr-x--x-w-  2 s466380 studs  2  9 окт.  16:19 marshtomp
+dr-x--x-w-  2 s466380 studs  2  9 окт.  16:19 roggenrola
+-r--r--r--  1 s466380 studs 37  9 окт.  16:19 simisage
+
+cd hariyama3
+ls -la
+total 19
+drwxrwxrwx  4 s466380 studs  6  9 окт.  16:19 .
+drwxr-xr-x  5 s466380 studs  8  9 окт.  16:19 ..
+-r-xr-----  1 s466380 studs 74  9 окт.  16:19 clamperl
+dr-xrwx-wx  2 s466380 studs  2  9 окт.  16:19 drowzee
+dr-xrwxrw-  2 s466380 studs  2  9 окт.  16:19 dusclops
+-rw-r-----  1 s466380 studs 51  9 окт.  16:19 zorua
 
 #4
 
-#4.1
+
 wc -l cinccino6/electrode duskull6/simisage hariyama3/clamperl 2>/dev/null | sort | grep -v total
 
+#Результат
 	#2 cinccino6/electrode
 	#2 duskull6/simisage
 	#2 hariyama3/clamperl
 
-#4.2
-ls -laR duskull6 2>/dev/null | sort -k 1 | grep ^-
+ls -lRa duskull6 2>/dev/null | sort -k 7 | grep ^-
 
+#Результат работы
 	#-r--r--r--  1 s466380 studs 37  9 окт.  16:19 simisage
 
-#4.3
 cat -n arcanine4 2>&1 | sort -f | grep -v 'de' 
 
-    #_
+#Результат работы
+	     #1	test test test
 
-#4.4
 cat -n cinccino6/electrode | grep 'n$'
 
-    #_
+#Результат работы
+	     #2	nonamen
 
-#4.5
-ls -ltR lab0 2>&1 | grep '6$' | grep -v 'total' | head -n3
+ls -lacR 2>&1 | grep -e ':[0-5][0-9] [.a-z0-9]*6$' | head -n3
 
-	#lrwxr-xr-x  1 s466380 studs   9 10 окт.  12:54 Copy_28 -> ./cinccino6
-	#drwxrwxrwx  4 s466380 studs   5 10 окт.  12:54 duskull6
-	#drwxrwxrwx  4 s466380 studs   5 10 окт.  12:54 cinccino6
+#Результат работы
+	#-rw-r--r--  1 s466380 studs    0 24 окт.  11:13 .lll6
+	#drwxr-xr-x  4 s466380 studs    5 24 окт.  10:41 cinccino6
+	#drwxr-xr-x  4 s466380 studs    5 24 окт.  10:41 duskull6
 
-#4.6
 cat -n arcanine4 2>/tmp/hsperfdata_s466380 | grep 'n$'
 
-    #_
+#Результат работы
+	     #2	nonon
 
-#5 
+#5
 
 rm arcanine4
 chmod u+w duskull6/simisage
@@ -149,4 +196,3 @@ rm hariyama3/clamperlskit*
 chmod -R 777 cinccino6
 rm -drf cinccino6
 rm -rf cinccino6/sudowoodo
-

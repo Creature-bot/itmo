@@ -2,10 +2,10 @@ import time
 
 start = time.perf_counter()
 
-stdin = open('thursday_json_file.json', 'r')
-stdout = open('tuesday_schedule_yaml_regex.yaml', 'w')
+stdin = open('tuesday_json_file.json', 'r')
+stdout = open('tuesday_schedule_yaml.yaml', 'w')
 stdin_1 = open('friday_json_file.json', 'r')
-stdout_1 = open('friday_schedule_yaml_regex.yaml', 'w')
+stdout_1 = open('friday_schedule_yaml.yaml', 'w')
 
 def f(file):
     text = file.read()

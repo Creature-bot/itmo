@@ -4,7 +4,7 @@ import time
 
 start = time.perf_counter()
 
-with open('thursday_json_file.json') as json_file:
+with open('tuesday_json_file.json') as json_file:
   data = json.load(json_file)
 
 with open('friday_json_file.json') as json_file_1:

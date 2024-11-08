@@ -1,7 +1,3 @@
-import time
-
-start = time.perf_counter()
-
 stdin = open('json_file.json', 'r')
 stdout = open('schedule_yaml.yaml', 'w')
 
@@ -45,5 +41,3 @@ def f(file):
 stdout.write(f(stdin))
 stdout.close()
 stdin.close()
-
-print(time.perf_counter() - start)

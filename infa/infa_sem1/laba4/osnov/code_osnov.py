@@ -2,10 +2,8 @@ import time
 
 start = time.perf_counter()
 
-stdin = open('tuesday_json_file.json', 'r')
-stdout = open('tuesday_schedule_yaml.yaml', 'w')
-stdin_1 = open('friday_json_file.json', 'r')
-stdout_1 = open('friday_schedule_yaml.yaml', 'w')
+stdin = open('jsonfile.json', 'r')
+stdout = open('schedule_yaml.yaml', 'w')
 
 def f(file):
     text = file.read()
@@ -29,12 +27,16 @@ def f(file):
             if ',' in line[i - 1]:
                 if "_teacher" in ans or "_place" in ans or "_tipe" in ans or "_lesson" in ans:
                     ans_yaml += (counter - 2) * '  ' + ans + "\n"
-                else:
-                    ans_yaml += (counter - 1) * '  ' + ans + "\n"
             elif '},' in line[i - 2] and '{' in line[i - 1]:
-                ans_yaml += (counter - 3) * '  ' + '- ' + ans + "\n"
+                if '[' in line[i]:
+                    ans_yaml += (counter - 3) * '  ' + '- ' + ans + ":\n"
+                else:
+                    ans_yaml += (counter - 3) * '  ' + '- ' + ans + "\n"
             elif '[' in line[i - 2]:
-                ans_yaml += (counter - 3) * '  ' + '- ' + ans + "\n"
+                if '[' in line[i]:
+                    ans_yaml += (counter - 3) * '  ' + '- ' + ans + ":\n"
+                else:
+                    ans_yaml += (counter - 3) * '  ' + '- ' + ans + "\n"
             elif '{' in line[i - 1]:
                 ans_yaml += (counter - 1) * '  ' + ans + ':\n'
     return ans_yaml
@@ -43,9 +45,5 @@ def f(file):
 stdout.write(f(stdin))
 stdout.close()
 stdin.close()
-
-stdout_1.write(f(stdin_1))
-stdout_1.close()
-stdin_1.close()
 
 print(time.perf_counter() - start)

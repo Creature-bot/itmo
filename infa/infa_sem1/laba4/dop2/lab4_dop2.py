@@ -1,7 +1,4 @@
 import re
-import time
-
-start = time.perf_counter()
 
 stdin = open('json_file.json', 'r')
 stdout = open('schedule_yaml_regex.yaml', 'w')
@@ -9,7 +6,6 @@ stdout = open('schedule_yaml_regex.yaml', 'w')
 def json_to_yaml(file):
     text = file.read()
     ans_yaml = ""
-
     key_value_pair = re.compile(r'"(\w+)":\s*"?([^"\n}]+)"?,*')
 
     for line in text.splitlines():
@@ -33,10 +29,7 @@ def json_to_yaml(file):
     return ans_yaml
 
 yaml_content = json_to_yaml(stdin)
-
 stdout.write(yaml_content)
 
 stdin.close()
 stdout.close()
-
-print(time.perf_counter() - start)

@@ -22,8 +22,10 @@ def json_to_yaml(file):
         if match:
             key, value = match.groups()
             if key == "_teacher" or key == "_place" or key == "_lesson" or key == "_tipe":
-                ans_yaml += '  ' * (counter - 2) + f"{key}: {value}\n"
-            elif key == "_time" or 'lesson_' in key:
+                ans_yaml += '  ' * (counter - 3) + f"{key}: {value}\n"
+            elif key == "_time":
+                ans_yaml += '  ' * (counter - 4) + '- ' + f"{key}: {value}\n"
+            elif 'lesson_' in key:
                 ans_yaml += '  ' * (counter - 3) + '- ' + f"{key}: {value}\n"
             else:
                 ans_yaml += '  ' * (counter - 1) + f"{key}: {value}\n"

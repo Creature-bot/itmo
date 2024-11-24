@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 def edit(s):
     return int(s[:s.find('.')])\
 
-with open("SPFB.RTS-12.18_180901_181231.csv") as r_file:
+with open("data.csv") as r_file:
     file_reader = csv.reader(r_file, delimiter=",")
     data = [[], [], [], []]
     columns = ["Открытие", "Макс", "Мин", "Закрытие"]

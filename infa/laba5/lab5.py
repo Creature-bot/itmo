@@ -14,14 +14,10 @@ with open("data.csv") as r_file:
     count = 0
     for row in file_reader:
         date = row[2]
-        if date == dates[0]:
-            data[0].append([edit(row[4]), edit(row[5]), edit(row[6]), edit(row[7])])
-        if date == dates[1]:
-            data[1].append([edit(row[4]), edit(row[5]), edit(row[6]), edit(row[7])])
-        if date == dates[2]:
-            data[2].append([edit(row[4]), edit(row[5]), edit(row[6]), edit(row[7])])
-        if date == dates[3]:
-            data[3].append([edit(row[4]), edit(row[5]), edit(row[6]), edit(row[7])])
+        for i in range(len(dates)):
+            if date == dates[i]:
+                data[i].append([edit(row[4]), edit(row[5]), edit(row[6]), edit(row[7])])
+                break
     plt.figure(figsize=(14, 7))
     for i in range(4):
         df = pd.DataFrame(data[i], columns=columns)

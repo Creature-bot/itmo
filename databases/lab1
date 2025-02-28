@@ -1,0 +1,171 @@
+BEGIN;
+
+DROP TABLE IF EXISTS Creature_action CASCADE;
+
+CREATE TABLE Creature_action (
+    id_creature_action SERIAL PRIMARY KEY,
+    id_creature INT NOT NULL,
+    id_action INT NOT NULL
+);
+
+DROP TABLE IF EXISTS Creature_emotion CASCADE;
+
+CREATE TABLE Creature_emotion (
+    id_creature_emotions SERIAL PRIMARY KEY,
+    id_creature INT NOT NULL,
+    id_emotion INT NOT NULL
+);
+
+DROP TABLE IF EXISTS Creature_location CASCADE;
+
+CREATE TABLE Creature_location (
+    id_creature_location SERIAL PRIMARY KEY,
+    id_creature INT NOT NULL,
+    id_location INT NOT NULL
+);
+
+DROP TABLE IF EXISTS Item_location CASCADE;
+
+CREATE TABLE Item_location (
+    id_item_location SERIAL PRIMARY KEY,
+    id_item INT NOT NULL,
+    id_location INT NOT NULL
+);
+
+DROP TABLE IF EXISTS Current_item CASCADE;
+
+CREATE TABLE Current_item (
+    id_current_item SERIAL PRIMARY KEY,
+    id_creature INT NOT NULL,
+    id_item INT NOT NULL
+);
+
+DROP TYPE IF EXISTS sex CASCADE;
+
+CREATE TYPE sex AS ENUM (
+    'Мужчина',
+    'Женщина'
+);
+
+DROP TYPE IF EXISTS actions CASCADE;
+
+CREATE TYPE actions AS ENUM (
+    'стоять',
+    'идти',
+    'молчать',
+    'говорить',
+    'спать',
+    'думать'
+);
+
+DROP TYPE IF EXISTS colours CASCADE;
+
+CREATE TYPE colours AS ENUM (
+    'белый',
+    'розовый',
+    'красный',
+    'оранжевый',
+    'желтый',
+    'зёленый',
+    'синий',
+    'фиолетовый',
+    'чёрный'
+);
+
+DROP TYPE IF EXISTS emotions CASCADE;
+
+CREATE TYPE emotions AS ENUM (
+    'нейтральное',
+    'злое',
+    'доброе',
+    'счастливое',
+    'грустное'
+);
+
+DROP TYPE IF EXISTS direction CASCADE;
+
+CREATE TYPE direction AS ENUM (
+    'слева',
+    'справа',
+    'снизу',
+    'сверху',
+    'спереди',
+    'сзади'
+);
+
+DROP TABLE IF EXISTS Item CASCADE;
+
+CREATE TABLE Item (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(200) NOT NULL,
+    length INT NOT NULL,
+    weight INT NOT NULL,
+    durability INT,
+    color colours NULL DEFAULT NULL
+);
+
+DROP TABLE IF EXISTS Action CASCADE;
+
+CREATE TABLE Action (
+    id SERIAL PRIMARY KEY,
+    action actions NOT NULL,
+    strength INT,
+    agility INT,
+    speed INT,
+    duration INT NOT NULL DEFAULT 10
+);
+
+DROP TABLE IF EXISTS Emotion CASCADE;
+
+CREATE TABLE Emotion (
+    id SERIAL PRIMARY KEY,
+    emotion emotions NOT NULL,
+    duration INT NOT NULL DEFAULT 10,
+    description VARCHAR(200) NOT NULL
+);
+
+DROP TABLE IF EXISTS Location CASCADE;
+
+CREATE TABLE Location (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(200) NOT NULL DEFAULT 'где-то',
+    coordinates POINT
+);
+
+DROP TABLE IF EXISTS Creature CASCADE;
+
+CREATE TABLE Creature (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(200) NOT NULL,
+    age INT NOT NULL DEFAULT 18,
+    sex sex NOT NULL,
+    date_of_birth DATE NOT NULL,
+    location_id INT REFERENCES Creature_location (id_creature_location),
+    item_id INT REFERENCES Current_item (id_current_item)
+);
+
+
+
+COMMIT;
+
+ALTER TABLE Creature_action
+ADD FOREIGN KEY (id_creature) REFERENCES Creature (id),
+ADD FOREIGN KEY (id_action) REFERENCES Action (id);
+
+ALTER TABLE Creature_emotion
+ADD FOREIGN KEY (id_creature) REFERENCES Creature (id),
+ADD FOREIGN KEY (id_emotion) REFERENCES Emotion (id);
+
+ALTER TABLE Creature_location
+ADD FOREIGN KEY (id_creature) REFERENCES Creature (id),
+ADD FOREIGN KEY (id_location) REFERENCES Location (id);
+
+ALTER TABLE Item_location
+ADD FOREIGN KEY (id_item) REFERENCES Item (id),
+ADD FOREIGN KEY (id_location) REFERENCES Location (id);
+
+ALTER TABLE Current_item
+ADD FOREIGN KEY (id_creature) REFERENCES Creature (id),
+ADD FOREIGN KEY (id_item) REFERENCES Item (id);
+
+COMMIT;

@@ -1,0 +1,55 @@
+{
+  "timeCreated" : "2025-03-29 09:09:57",
+  "storage" : [ {
+    "id" : -309008190,
+    "name" : "23",
+    "coordinates" : {
+      "xvalue" : 23,
+      "yvalue" : 23
+    },
+    "creationDate" : 1743228604.564199801,
+    "salary" : 23,
+    "endDate" : 11146634580.000000000,
+    "position" : "MANAGER",
+    "status" : "PROBATION",
+    "organization" : {
+      "annualTurnover" : 23,
+      "employeesCount" : 2333,
+      "type" : null
+    }
+  }, {
+    "id" : 456096442,
+    "name" : "fgfg",
+    "coordinates" : {
+      "xvalue" : 4,
+      "yvalue" : 5
+    },
+    "creationDate" : 1744373994.346705918,
+    "salary" : 9000,
+    "endDate" : 23049356400.000000000,
+    "position" : "MANAGER",
+    "status" : "HIRED",
+    "organization" : {
+      "annualTurnover" : 33,
+      "employeesCount" : 333,
+      "type" : null
+    }
+  }, {
+    "id" : -16505391,
+    "name" : "tutu",
+    "coordinates" : {
+      "xvalue" : 67,
+      "yvalue" : 77
+    },
+    "creationDate" : 1744375905.401443478,
+    "salary" : 5000,
+    "endDate" : 11485148400.000000000,
+    "position" : "CLEANER",
+    "status" : "FIRED",
+    "organization" : {
+      "annualTurnover" : 56,
+      "employeesCount" : 56,
+      "type" : "TRUST"
+    }
+  } ]
+}

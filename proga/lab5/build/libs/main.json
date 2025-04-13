@@ -1,0 +1,21 @@
+{
+  "timeCreated" : "2025-03-29 08:05:28",
+  "storage" : [ {
+    "id" : 1434901624,
+    "name" : "23",
+    "coordinates" : {
+      "xvalue" : 23,
+      "yvalue" : 23
+    },
+    "creationDate" : 1743224735.531183169,
+    "salary" : 23,
+    "endDate" : 11162532180.000000000,
+    "position" : "CLEANER",
+    "status" : "PROBATION",
+    "organization" : {
+      "annualTurnover" : 23,
+      "employeesCount" : 23,
+      "type" : null
+    }
+  } ]
+}

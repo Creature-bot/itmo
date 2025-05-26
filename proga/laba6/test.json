@@ -1,0 +1,55 @@
+{
+  "timeCreated" : "2025-05-24 01:42:24",
+  "storage" : [ {
+    "id" : 8320826895341669592,
+    "name" : "23",
+    "coordinates" : {
+      "xvalue" : 23,
+      "yvalue" : 23
+    },
+    "creationDate" : 1748040148.248317483,
+    "salary" : 23,
+    "endDate" : 11170394580.000000000,
+    "position" : "ENGINEER",
+    "status" : "FIRED",
+    "organization" : {
+      "annualTurnover" : 23,
+      "employeesCount" : 23,
+      "type" : "COMMERCIAL"
+    }
+  }, {
+    "id" : 5118675219563329304,
+    "name" : "trust",
+    "coordinates" : {
+      "xvalue" : 5555,
+      "yvalue" : 5
+    },
+    "creationDate" : 1748081290.231821192,
+    "salary" : 500000,
+    "endDate" : 11483076180.000000000,
+    "position" : "ENGINEER",
+    "status" : "HIRED",
+    "organization" : {
+      "annualTurnover" : 5555,
+      "employeesCount" : 45,
+      "type" : "COMMERCIAL"
+    }
+  }, {
+    "id" : 7211139248293065777,
+    "name" : "udu",
+    "coordinates" : {
+      "xvalue" : 444,
+      "yvalue" : 444
+    },
+    "creationDate" : 1748083534.428747068,
+    "salary" : 344444,
+    "endDate" : 7955187720.000000000,
+    "position" : "MANAGER",
+    "status" : "RECOMMENDED_FOR_PROMOTION",
+    "organization" : {
+      "annualTurnover" : 5,
+      "employeesCount" : 555555,
+      "type" : null
+    }
+  } ]
+}

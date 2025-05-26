@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
+}
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.18.2'
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.18.2'
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.18.2'
+    implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.18.2'
+}
+
+// ./gradlew shadowJar - запуск сборки jar
+
+shadowJar {
+    archiveBaseName.set('main')
+    manifest {
+        attributes(
+                'Main-Class': 'lab5.Main'
+        )
+    }
+}

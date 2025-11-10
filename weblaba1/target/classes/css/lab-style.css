@@ -1,0 +1,197 @@
+/* === ОБЩИЕ СТИЛИ === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Comic Sans MS', fantasy, cursive;
+  background: linear-gradient(60deg, #ff00ff, #00ffff, #ffff00);
+  background-size: 400% 400%;
+  animation: bgmove 10s ease infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+/* АНИМАЦИЯ ГРАДИЕНТА */
+@keyframes bgmove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* === КОНТЕЙНЕР === */
+.container {
+  width: 100%;
+  max-width: 1400px;
+  background-color: rgba(250, 230, 220, 0.8);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.25);
+  overflow-x: auto;
+
+}
+
+/* === ШАПКА === */
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  color: #fff;
+  font-size: 2.5em;
+  text-shadow: 2px 2px 5px #000;
+}
+
+.student-info {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 12px;
+  margin-top: 10px;
+}
+
+/* === ГИФКА === */
+.gif-wrapper {
+  text-align: center;
+  margin: 10px 0 30px 0;
+}
+
+.cat-gif {
+  width: 190px;
+  border-radius: 2px;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* === ТАБЛИЧНАЯ ВЁРСТКА === */
+.layout-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 20px;
+  margin: 0 auto;
+  table-layout: fixed;
+}
+
+/* === ЯЧЕЙКИ === */
+.form-cell, .graph-cell, .table-cell {
+  vertical-align: top;
+  padding: 10px;
+}
+
+/* === ФОРМА === */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.r-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.r-buttons label {
+  background-color: #ff50f6;
+  padding: 6px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button#submitBtn {
+  background: linear-gradient(45deg, #ff00ff, #ff8000);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+button#submitBtn:hover {
+  transform: scale(1.05);
+}
+
+/* === ГРАФИК === */
+#graphCanvas {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  background-color: white;
+  border: 2px solid #ff00ff;
+  border-radius: 10px;
+  display: block;
+  margin: 0 auto;
+  box-shadow: 0 0 10px #ff00ff;
+}
+
+/* === ТАБЛИЦА РЕЗУЛЬТАТОВ === */
+.table-wrapper {
+  max-height: 400px;
+  overflow-y: auto;
+  background: #ffff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+.results-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.results-table th {
+  background: #ff6b8b;
+  border: 3px solid #9e2e7b;
+  color: white;
+  padding: 10px;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.results-table td {
+  padding: 8px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.hit-true {
+  color: green;
+  font-weight: bold;
+}
+
+.hit-false {
+  color: red;
+  font-weight: bold;
+}
+
+/* === АДАПТИВ === */
+@media (max-width: 900px) {
+  .layout-table {
+    display: block;
+  }
+
+  .form-cell, .graph-cell, .table-cell {
+    display: block;
+    width: 100%;
+    margin-bottom: 30px;
+  }
+
+  #graphCanvas {
+    max-width: 100%;
+  }
+}

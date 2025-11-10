@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>my something</title>
+    <link rel="stylesheet" href="css/lab-style.css">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+</head>
+<body>
+<div class="container">
+    <!-- Шапка -->
+    <div class="header">
+        <h1>Проверка попадания точки в область</h1>
+        <div class="student-info">
+            ⭐ Кудрявцева Руслана Сергеевна | Группа P3217 | Вариант 466380 ⭐
+        </div>
+    </div>
+
+    <!-- Гифка -->
+    <div class="gif-wrapper">
+        <img src="animation-cat.gif" alt="Милая гифка" class="cat-gif">
+    </div>
+
+    <!-- Контент в виде таблицы -->
+    <table class="layout-table">
+        <tr>
+            <!-- Форма -->
+            <td class="form-cell">
+                <form id="pointForm">
+                    <h2>Ввод параметров</h2>
+
+                    <label for="x-select">X:</label><br>
+                    <select id="x-select" name="x" required>
+                        <option value="" disabled selected>Выбери X</option>
+                        <option value="-5">-5</option>
+                        <option value="-4">-4</option>
+                        <option value="-3">-3</option>
+                        <option value="-2">-2</option>
+                        <option value="-1">-1</option>
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select><br><br>
+
+                    <label for="y-input">Y:</label><br>
+                    <input type="text" id="y-input" name="y" placeholder="от -3 до 5" required><br><br>
+
+                    <label>R:</label><br>
+                    <div class="r-buttons">
+                        <label><input type="radio" name="r" value="1" required> 1</label>
+                        <label><input type="radio" name="r" value="1.5"> 1.5</label>
+                        <label><input type="radio" name="r" value="2"> 2</label>
+                        <label><input type="radio" name="r" value="2.5"> 2.5</label>
+                        <label><input type="radio" name="r" value="3"> 3</label>
+                    </div><br>
+
+                    <button type="submit" id="submitBtn">Проверить</button>
+                </form>
+                <div id="message"></div>
+            </td>
+
+            <!-- График -->
+            <td class="graph-cell">
+                <h2>График</h2>
+                <canvas id="graphCanvas" width="400" height="400"></canvas>
+                <div class="graph-info">
+                    <p>Масштаб: R = <span id="currentR">не выбран</span></p>
+                    <p>Последняя точка: <span id="currentPoint">–</span></p>
+                </div>
+            </td>
+
+            <!-- Таблица результатов -->
+            <td class="table-cell">
+                <h2>История</h2>
+                <div class="table-wrapper">
+                    <table class="results-table">
+                        <thead>
+                        <tr>
+                            <th>X</th>
+                            <th>Y</th>
+                            <th>R</th>
+                            <th>Результат</th>
+                            <th>Время</th>
+                            <th>Время выполнения</th>
+                        </tr>
+                        </thead>
+                        <tbody id="resultsBody">
+                        <!-- Данные из JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+<script src="js/decimal.js"></script>
+<script src="js/style.js"></script>
+</body>
+</html>

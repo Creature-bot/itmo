@@ -1,0 +1,121 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    font-family: 'Comic Sans MS', fantasy, cursive;
+    background: linear-gradient(60deg, #ff00ff, #00ffff, #ffff00);
+    background-size: 400% 400%;
+    animation: bgmove 10s ease infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* АНИМАЦИЯ ГРАДИЕНТА */
+@keyframes bgmove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Убираем старый псевдоэлемент с затемнением */
+body::before {
+    display: none;
+}
+
+#main-container {
+    background: linear-gradient(135deg,  rgba(255, 176, 231, 0.66), rgba(224, 255, 255, 0.9));
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 600px;
+    margin: auto;
+}
+
+#head-area {
+    padding: 10px 0;
+    margin-bottom: 20px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    border-bottom: 2px solid #add8e6;
+}
+
+#head-area > div {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.center-aligned, .left-aligned, .right-aligned {
+    text-align: center;
+    flex: 1;
+}
+
+.center-aligned a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+.center-aligned a:hover {
+    background-color: #45a049;
+}
+
+#head-area {
+    padding: 10px 0;
+    margin-bottom: 20px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    border-bottom: 2px solid #add8e6;
+}
+
+.header-body {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.header-footer {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding-top: 10px;
+    border-top: 1px dashed #c0e0f0;
+}
+
+.center-aligned, .left-aligned, .right-aligned {
+    text-align: center;
+    flex: 1;
+}
+
+.header-footer .right-aligned a {
+    display: inline-block;
+    padding: 5px 15px;
+    background-color: rgb(168, 44, 149);
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+.header-footer .right-aligned a:hover {
+    background-color: #781e6b;
+}

@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  # Имя вашего сервиса (к которому будет обращаться приложение, например, http://db:5432)
+  db:
+    image: postgres:16-alpine # Рекомендую использовать конкретную и легковесную версию
+    container_name: my_postgres_db
+
+    # Переменные окружения для настройки PostgreSQL
+    environment:
+      POSTGRES_USER: appuser
+      POSTGRES_PASSWORD: mysecretpassword
+      POSTGRES_DB: appdb
+      # Указываем, где хранить данные (PGDATA - по умолчанию /var/lib/postgresql/data)
+      PGDATA: /var/lib/postgresql/data/pgdata
+
+    # Маппинг портов (HOST_PORT:CONTAINER_PORT)
+    # Позволяет получить доступ к базе данных с вашей хостовой машины по адресу localhost:5432
+    ports:
+      - "5432:5432"
+
+    # Сохранение данных (Persistence)
+    # Связывает именованный Volume на хосте с папкой данных внутри контейнера
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/pgdata
+
+    # Всегда перезапускать, если не было явной команды на остановку
+    restart: unless-stopped
+
+# Определения именованных томов
+volumes:
+  postgres_data:
+    driver: local

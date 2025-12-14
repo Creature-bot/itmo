@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Лабораторная 3</title>
+    <link rel="icon" href="resources/img/cse_logo.png"/>
+    <h:outputStylesheet library="css" name="style.css"/>
+    <h:outputStylesheet library="css" name="clock.css"/>
+    <h:outputStylesheet library="css" name="datetime.css"/>
+    <script type="module" src="resources/js/index.js"></script>
+</h:head>
+
+<h:body >
+    <div id="main-container">
+        <div>
+            <div id="head-area" class="coloured-block floating-areas">
+
+                <div class="header-body">
+                    <span class="left-aligned">Кудрявцева Руслана</span>
+                    <span class="center-aligned">Группа P3217</span>
+                </div>
+
+                <div class="header-footer">
+                    <span class="left-aligned">Вариант 3844</span>
+                    <span class="right-aligned">
+                        <h:link value="Основная страница" outcome="redirect-main"/>
+                    </span>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="mt-5-rem col-lg-6 clock-col">
+                        <div class="d-flex justify-content-center">
+                            <div class="clock">
+                                <div class="wrap">
+                                    <h:graphicImage library="img" name="cotik.gif" alt="Фоновый кот" class="clock-gif-background"/>
+                                    <span class="hour"/>
+                                    <span class="minute"/>
+                                    <span class="second"/>
+                                    <span class="dot"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-5 d-flex justify-content-center">
+                            <div class="d-inline-block date-time ml-2">
+                                <div class="date">
+                                    <span id="day-name">Day</span>,
+                                    <span id="month">Month</span>
+                                    <span id="day-number">00</span>,
+                                    <span id="year">Year</span>
+                                </div>
+                                <div class="time">
+                                    <span id="hour">00</span>
+                                    <span>:</span>
+                                    <span id="minutes">00</span>
+                                    <span>:</span>
+                                    <span id="seconds">00</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h:outputScript library="js" name="jquery-3.6.1.min.js"/>
+</h:body>
+
+</html>

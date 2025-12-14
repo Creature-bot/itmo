@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>JSF PrimeFaces Форма Координат</title>
+    <h:outputStylesheet name="css/file.css"/>
+</h:head>
+<h:body>
+    <h:panelGroup layout="block" styleClass="container">
+        <h:panelGroup layout="block" styleClass="content">
+            <h:panelGroup layout="block" styleClass="top-left-nav">
+                <h:link value="Стартовая страница" outcome="redirect-index"/>
+            </h:panelGroup>
+
+            <h:panelGroup layout="block" class="graph-container">
+                <canvas id="graphCanvas"></canvas>
+
+            </h:panelGroup>
+
+            <h:form id="main-form" styleClass="controls" autocomplete="off">
+
+                <h:panelGroup layout="block" styleClass="input-group">
+                    <p:outputLabel for="xSelect" value="X:"/>
+                    <h:panelGroup layout="block" styleClass="radio-group">
+                        <p:selectOneRadio id="xSelect" value="#{xBean.x}" layout="lineDirection"
+                                          validator="#{xBean.validateXBeanValue}">
+                            <f:selectItem itemLabel="-3" itemValue="-3"/>
+                            <f:selectItem itemLabel="-2" itemValue="-2"/>
+                            <f:selectItem itemLabel="-1" itemValue="-1"/>
+                            <f:selectItem itemLabel="0" itemValue="0"/>
+                            <f:selectItem itemLabel="1" itemValue="1"/>
+                            <f:selectItem itemLabel="2" itemValue="2"/>
+                            <f:selectItem itemLabel="3" itemValue="3"/>
+                        </p:selectOneRadio>
+                    </h:panelGroup>
+                    <p:message for="xSelect" styleClass="error-message"/>
+                </h:panelGroup>
+
+                <h:panelGroup layout="block" styleClass="input-group">
+                    <p:outputLabel value="Y:"/>
+                    <p:inputText id="y-input" value="#{yBean.y}" required="true" requiredMessage="Y обязателен"
+                                 converterMessage="Y должен быть числом"
+                                 placeholder="Введите Y от -5 до 5"
+                                 validator="#{yBean.validateYBeanValue}"/>
+                    <p:message for="y-input" styleClass="error-message"/>
+                </h:panelGroup>
+
+                <h:panelGroup layout="block" styleClass="input-group">
+                    <p:outputLabel value="R:"/>
+                    <h:inputHidden id="r-input" value="#{rBean.r}" validator="#{rBean.validateRBeanValue}"
+                                   autocomplete="off"/>
+                    <h:outputText id="rOutputDisplay" value="Текущее значение: #{rBean.r}" styleClass="text-center"/>
+                    <h:panelGroup layout="block" styleClass="r-links-group">
+                        <p:commandLink value="1" actionListener="#{rBean.setR(1)}" update="rOutputDisplay r-input"
+                                       oncomplete="handleRChangeComplete(1); return false;" process="@this"/> |
+                        <p:commandLink value="1.5" actionListener="#{rBean.setR(1.5)}" update="rOutputDisplay r-input"
+                                       oncomplete="handleRChangeComplete(1.5); return false;" process="@this"/> |
+                        <p:commandLink value="2" actionListener="#{rBean.setR(2)}" update="rOutputDisplay r-input"
+                                       oncomplete="handleRChangeComplete(2); return false;" process="@this"/> |
+                        <p:commandLink value="2.5" actionListener="#{rBean.setR(2.5)}" update="rOutputDisplay r-input"
+                                       oncomplete="handleRChangeComplete(2.5); return false;" process="@this"/> |
+                        <p:commandLink value="3" actionListener="#{rBean.setR(3)}" update="rOutputDisplay r-input"
+                                       oncomplete="handleRChangeComplete(3); return false;" process="@this"/>
+                    </h:panelGroup>
+                    <p:message for="r-input" styleClass="error-message"/>
+                </h:panelGroup>
+
+                <h:panelGroup layout="block" styleClass="button-group">
+                    <p:commandButton value="Очистить"
+                                     action="#{resultBean.deleteAllByUserId()}"
+                                     update="@form :results-table"
+                                     id="clear-btn"
+                                     immediate="true"
+                                     process="@this"
+                                     oncomplete="handleClearComplete();"/>
+
+                    <p:commandButton value="Отправить"
+                                     action="#{resultBean.addResult()}"
+                                     update="@form :results-table"
+                                     id="submit-btn"
+                                     oncomplete="handleSbmComplete();"
+                    />
+                </h:panelGroup>
+            </h:form>
+
+            <h:form id="graph-form" styleClass="controls" style="display: none;" autocomplete="off">
+                <h:inputHidden id="x-graph-hidden" value="#{xBean.x}"/>
+                <h:inputHidden id="y-graph-hidden" value="#{yBean.y}"/>
+                <h:inputHidden id="r-graph-hidden" value="#{rBean.r}"/>
+
+                <h:panelGroup layout="block" styleClass="button-group">
+
+                    <p:commandButton value="Отправить"
+                                     action="#{resultBean.addResult()}"
+                                     update="@form :results-table"
+                                     id="sub-btn"
+                                     oncomplete="handleSbmComplete();"
+                    />
+                </h:panelGroup>
+            </h:form>
+
+
+            <h:panelGroup id="results" layout="block">
+                <h3>Результаты:</h3>
+
+                <p:dataTable id="results-table" var="point" value="#{resultBean.results}"
+                             emptyMessage="Нет сохраненных результатов."
+                             resizableColumns="true"
+                             liveResize="true"
+                             stickyHeader="true"
+                             scrollable="true"
+                             scrollHeight="500"
+
+                >
+
+                    <p:columnGroup type="header">
+                        <p:row styleClass="header">
+                            <p:column headerText="X" rowspan="2" style="width: 100px;"/>
+                            <p:column headerText="Y" rowspan="2" style="width: 100px;"/>
+                            <p:column headerText="R" rowspan="2" style="width: 50px;"/>
+                            <p:column headerText="Результат" rowspan="2" style="width: 70px;"/>
+
+                            <p:column headerText="Время начала" colspan="6"/>
+
+                            <p:column headerText="Время выполнения (Сек)" rowspan="2" style="width: 195px;"/>
+                        </p:row>
+
+                        <p:row styleClass="time-cell">
+                            <p:column headerText="Год" style="width: 45px;"/>
+                            <p:column headerText="Мес" style="width: 35px;"/>
+                            <p:column headerText="День" style="width: 35px;"/>
+                            <p:column headerText="Час" style="width: 15px;"/>
+                            <p:column headerText="Мин" style="width: 15px;"/>
+                            <p:column headerText="Сек" style="width: 15px;"/>
+                        </p:row>
+                    </p:columnGroup>
+
+                    <p:column styleClass="point-output">
+                        <h:outputText value="#{formatter.formatBigDecimal(point.x)}"/>
+                    </p:column>
+
+                    <p:column styleClass="point-output">
+                        <h:outputText value="#{formatter.formatBigDecimal(point.y)}"/>
+                    </p:column>
+
+                    <p:column styleClass="point-output">
+                        <h:outputText value="#{formatter.formatBigDecimal(point.r)}"/>
+                    </p:column>
+
+                    <p:column styleClass="hit-status-column #{point.hitStatus ? 'hit' : 'miss'}">
+                        <h:outputText value="#{point.hitStatus ? 'Попал' : 'Промах'}"/>
+                    </p:column>
+
+                    <p:column styleClass="time-cell">
+                        <h:outputText value="#{point.timeStart.year}"/>
+                    </p:column>
+                    <p:column styleClass="time-cell">
+                        <h:outputText value="#{point.timeStart.monthValue}"/>
+                    </p:column>
+                    <p:column styleClass="time-cell">
+                        <h:outputText value="#{point.timeStart.dayOfMonth}"/>
+                    </p:column>
+                    <p:column styleClass="time-cell">
+                        <h:outputText value="#{point.timeStart.hour}"/>
+                    </p:column>
+                    <p:column styleClass="time-cell">
+                        <h:outputText value="#{point.timeStart.minute}"/>
+                    </p:column>
+                    <p:column styleClass="time-cell">
+                        <h:outputText value="#{point.timeStart.second}"/>
+                    </p:column>
+
+                    <p:column>
+                        <h:outputText value="#{point.executionTime / 1000000000.0}">
+                            <f:convertNumber pattern="0.00000"/>
+                        </h:outputText>
+                    </p:column>
+
+                </p:dataTable>
+            </h:panelGroup>
+        </h:panelGroup>
+    </h:panelGroup>
+    <h:outputScript name="js/utils.js" target="body"/>
+    <h:outputScript name="js/decimal.js" target="body"/>
+    <h:outputScript name="js/dom-handlers.js" target="body"/>
+    <h:outputScript name="js/graph.js" target="body"/>
+    <h:outputScript name="js/main.js" target="body"/>
+</h:body>
+</html>
